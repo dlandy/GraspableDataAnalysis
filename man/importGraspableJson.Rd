@@ -2,22 +2,31 @@
 % Please edit documentation in R/dataLoading.R
 \name{importGraspableJson}
 \alias{importGraspableJson}
-\title{importGraspableJson}
+\title{importGraspableJson
+This simple script just loads a json data file, merges the trial data and events, and renames a few columns
+Optional, it also twiddles things down to a single version of GM, and a single context ("experiment").}
 \usage{
-importGraspableJson(filename, singleVersionOnly = F, limitExperiment = F)
+importGraspableJson(filename, version = F, limitExperiment = F)
 }
 \arguments{
-\item{fileName}{a vector of stimuli, between 0 and inf
+\item{version}{If any non-false value, data will be limited to versions of gm matching this string}
+
+\item{limitExperiment}{If not false, limit to experiment contexts matching this value
 Comments}
+
+\item{fileName}{the name of a file locating a json project}
 }
 \value{
-A list of Tibbles
+a tibble containing the data from the file, with the class "GM X", where X is the version 
+specified (or the first version number to appear)
 }
 \description{
 importGraspableJson
+This simple script just loads a json data file, merges the trial data and events, and renames a few columns
+Optional, it also twiddles things down to a single version of GM, and a single context ("experiment").
 }
 \examples{
 canvasSnippetFile <- system.file("extdata", "canvasSnippet.json", package = "GraspableDataAnalysis", mustWork = TRUE)
-canvasSnippetData <- importGraspableJson(canvasSnippetFile, singleVersionOnly = "2.5.12" )
+canvasSnippetData <- importGraspableJson(canvasSnippetFile, version = "2.5.12" )
 
 }
