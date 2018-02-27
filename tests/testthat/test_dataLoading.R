@@ -1,0 +1,10 @@
+test_that("JSON Loading", {
+  canvasSnippetFile <- system.file("extdata", "canvasSnippet.json", package = "GraspableDataAnalysis", mustWork = TRUE)
+  canvasSnippetData <- importGraspableJson(canvasSnippetFile, singleVersionOnly = "2.5.12" )
+  expect_equal(canvasSnippetData$trial_id[1], "_090ae6b93cebb8d0")
+  expect_equal(canvasSnippetData$trial_id[100], "_0d2fe671340549a9")
+  expect_equal(canvasSnippetData$trial_id[1000], "_4b3f7e03beec1b3a")
+  expect_equal(canvasSnippetData$dur[149], 1087)
+  expect_equal(canvasSnippetData$dur[1113], 153)
+  expect_equal(canvasSnippetData$dur[2149], 885)
+})
