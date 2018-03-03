@@ -2,28 +2,32 @@
 % Please edit documentation in R/dataLoading.R
 \name{importGraspableJson}
 \alias{importGraspableJson}
-\title{importGraspableJson
-This simple script just loads a json data file, merges the trial data and events, and renames a few columns
-Optional, it also twiddles things down to a single version of GM, and a single context ("experiment").}
+\title{importGraspableJson}
 \usage{
-importGraspableJson(filename, version = F, limitExperiment = F)
+importGraspableJson(filename, version = F, limitExperiment = F,
+  compress = T, debug = F)
 }
 \arguments{
 \item{version}{If any non-false value, data will be limited to versions of gm matching this string}
 
-\item{limitExperiment}{If not false, limit to experiment contexts matching this value
+\item{limitExperiment}{If not false, limit to experiment contexts matching this value}
+
+\item{compress}{If set to true, execute logic to collapse each interaction into a single row, glossing
+diferences between touch, tap, release, etc events.}
+
+\item{debug}{If true, does a number of sanity checks, like looking at the number of unique old states when collapsing
 Comments}
 
 \item{fileName}{the name of a file locating a json project}
 }
 \value{
 a tibble containing the data from the file, with the class "GM X", where X is the version 
-specified (or the first version number to appear)
+specified (or the first version number to appear).
 }
 \description{
-importGraspableJson
 This simple script just loads a json data file, merges the trial data and events, and renames a few columns
-Optional, it also twiddles things down to a single version of GM, and a single context ("experiment").
+It also twiddles things down to a single version of GM, and a single context ("experiment").  It does this only if you
+set 'compress' to true, but that seems like the vastly most useful format by default.
 }
 \examples{
 canvasSnippetFile <- system.file("extdata", "canvasSnippet.json", package = "GraspableDataAnalysis", mustWork = TRUE)
